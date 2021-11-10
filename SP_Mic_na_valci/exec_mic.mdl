@@ -1,0 +1,334 @@
+Model {
+  Name                    "exec_mic"
+  Version                 7.4
+  MdlSubVersion           0
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime        "0.035000"
+  OverrideScopeRefreshTime on
+  DisableAllScopes        off
+  DataTypeOverride        "UseLocalSettings"
+  MinMaxOverflowLogging   "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength    120
+  Created                 "Wed Feb 15 11:06:26 2006"
+  Creator                 "Student"
+  UpdateHistory           "UpdateHistoryNever"
+  ModifiedByFormat        "%<Auto>"
+  LastModifiedBy          "REX"
+  ModifiedDateFormat      "%<Auto>"
+  LastModifiedDate        "Tue Jan 26 14:55:12 2010"
+  RTWModifiedTimeStamp    0
+  ModelVersionFormat      "1.%<AutoIncrement:104>"
+  ConfigurationManager    "None"
+  SampleTimeColors        off
+  SampleTimeAnnotations   off
+  LibraryLinkDisplay      "none"
+  WideLines               off
+  ShowLineDimensions      off
+  ShowPortDataTypes       off
+  ShowLoopsOnError        on
+  IgnoreBidirectionalLines off
+  ShowStorageClass        off
+  ShowTestPointIcons      on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons         on
+  SortedOrder             off
+  ExecutionContextIcon    off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip        off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip off
+  ToolBar                 on
+  StatusBar               on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks   off
+  SimulationMode          "normal"
+  LinearizationMsg        "none"
+  Profile                 off
+  ParamWorkspaceSource    "MATLABWorkspace"
+  AccelSystemTargetFile   "accel.tlc"
+  AccelTemplateMakefile   "accel_default_tmf"
+  AccelMakeCommand        "make_rtw"
+  TryForcingSFcnDF        off
+  RecordCoverage          off
+  CovPath                 "/"
+  CovSaveName             "covdata"
+  CovMetricSettings       "dw"
+  CovNameIncrementing     off
+  CovHtmlReporting        on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName    "covCumulativeData"
+  CovCumulativeReport     off
+  CovReportOnPause        on
+  CovModelRefEnable       "Off"
+  CovExternalEMLEnable    off
+  ExtModeBatchMode        off
+  ExtModeEnableFloating   on
+  ExtModeTrigType         "manual"
+  ExtModeTrigMode         "normal"
+  ExtModeTrigPort         1
+  ExtModeTrigElement      "any"
+  ExtModeTrigDuration     1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff      0
+  ExtModeTrigDelay        0
+  ExtModeTrigDirection    "rising"
+  ExtModeTrigLevel        0
+  ExtModeArchiveMode      off
+  ExtModeAutoIncOneShot   off
+  ExtModeIncDirWhenArm    off
+  ExtModeAddSuffixToVar   off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect   on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll           on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse             on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  #RexVersion             "2.50.99 rev. 12645, Date 2020-11-23"
+  MdlSubVersion           0
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime        "0.035000"
+  OverrideScopeRefreshTime on
+  DisableAllScopes        off
+  DataTypeOverride        "UseLocalSettings"
+  MinMaxOverflowLogging   "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength    120
+  Created                 "Wed Feb 15 11:06:26 2006"
+  Creator                 "Student"
+  UpdateHistory           "UpdateHistoryNever"
+  ModifiedByFormat        "%<Auto>"
+  LastModifiedBy          "REX"
+  ModifiedDateFormat      "%<Auto>"
+  LastModifiedDate        "Tue Jan 26 14:55:12 2010"
+  RTWModifiedTimeStamp    0
+  ModelVersionFormat      "1.%<AutoIncrement:104>"
+  ConfigurationManager    "None"
+  SampleTimeColors        off
+  SampleTimeAnnotations   off
+  LibraryLinkDisplay      "none"
+  WideLines               off
+  ShowLineDimensions      off
+  ShowPortDataTypes       off
+  ShowLoopsOnError        on
+  IgnoreBidirectionalLines off
+  ShowStorageClass        off
+  ShowTestPointIcons      on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons         on
+  SortedOrder             off
+  ExecutionContextIcon    off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip        off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip off
+  ToolBar                 on
+  StatusBar               on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks   off
+  SimulationMode          "normal"
+  LinearizationMsg        "none"
+  Profile                 off
+  ParamWorkspaceSource    "MATLABWorkspace"
+  AccelSystemTargetFile   "accel.tlc"
+  AccelTemplateMakefile   "accel_default_tmf"
+  AccelMakeCommand        "make_rtw"
+  TryForcingSFcnDF        off
+  RecordCoverage          off
+  CovPath                 "/"
+  CovSaveName             "covdata"
+  CovMetricSettings       "dw"
+  CovNameIncrementing     off
+  CovHtmlReporting        on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName    "covCumulativeData"
+  CovCumulativeReport     off
+  CovReportOnPause        on
+  CovModelRefEnable       "Off"
+  CovExternalEMLEnable    off
+  ExtModeBatchMode        off
+  ExtModeEnableFloating   on
+  ExtModeTrigType         "manual"
+  ExtModeTrigMode         "normal"
+  ExtModeTrigPort         1
+  ExtModeTrigElement      "any"
+  ExtModeTrigDuration     1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff      0
+  ExtModeTrigDelay        0
+  ExtModeTrigDirection    "rising"
+  ExtModeTrigLevel        0
+  ExtModeArchiveMode      off
+  ExtModeAutoIncOneShot   off
+  ExtModeIncDirWhenArm    off
+  ExtModeAddSuffixToVar   off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect   on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll           on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse             on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  #RexVersion             "2.50.1 rev. 7567 - REXCONV, Date 2016-11-7"
+  ShowPortLabels          on
+  SavedCharacterEncoding  "UTF-8"
+  MaskType                "REX sequence"
+  MaskIconFrame           on
+  MaskIconOpaque          on
+  MaskIconRotate          "none"
+  MaskIconUnits           "autoscale"
+  BlockDefaults {
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    NamePlacement           "normal"
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+    ShowName                on
+    BlockRotation           0
+    BlockMirror             off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment     "center"
+    VerticalAlignment       "middle"
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  LineDefaults {
+    FontName                "Helvetica"
+    FontSize                9
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  System {
+    Name                    "exec_mic"
+    Location                [8, 32, 198, 361]
+    Open                    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth       200
+    ScreenColor             "white"
+    PaperOrientation        "landscape"
+    PaperPositionMode       "auto"
+    PaperType               "A4"
+    PaperUnits              "centimeters"
+    TiledPaperMargins       [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale          1
+    ShowPageBoundaries      off
+    ReportName              "simulink-default.rpt"
+    SIDHighWatermark        4
+    #GUID                   db39fe3d-ed80-4aa8-bd82-9c485bbb9edf
+    Block {
+      BlockType               Reference
+      Name                    "EXEC"
+      Ports                   [0, 8, 0, 0, 0]
+      Position                [35, 23, 80, 292]
+      SourceBlock             "execlib/EXEC"
+      SID                     1
+      BackgroundColor         [0.764706, 0.764706, 1.000000]
+      LibraryVersion          "1.309"
+      SourceType              "EXEC"
+      ShowPortLabels          "FromPortIcon"
+      SystemSampleTime        -1
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      target                  "Generic target device"
+      tick                    "0.002"
+      ntick0                  1
+      ntick1                  50
+      ntick2                  100
+      ntick3                  1200
+      pri0                    5
+      pri1                    9
+      pri2                    13
+      pri3                    18
+      FontSize                10
+      cpu0                    -1
+      cpu1                    -1
+      cpu2                    -1
+      cpu3                    -1
+      #GUID                   4b280d5b-bcea-4f9a-9803-830f851f2dce
+    }
+    Block {
+      BlockType               Reference
+      Name                    "HMI"
+      Ports                   [0, 0, 0, 0, 0]
+      Position                [110, 238, 160, 252]
+      SourceBlock             "execlib/HMI"
+      IncludeHMI              on
+      HmiDir                  "hmi"
+      SourceDir               "hmisrc"
+      GenerateWebWatch        off
+      GenerateRexHMI          off
+      RedirectToHMI           on
+      Compression             on
+      FontSize                10
+      #GUID                   ab0eec52-b86a-4886-b702-7db8430c2ddc
+    }
+    Block {
+      BlockType               Reference
+      Name                    "INFO"
+      Ports                   [0, 0, 0, 0, 0]
+      Position                [110, 278, 160, 292]
+      SourceBlock             "execlib/INFO"
+      Title                   "Ball on Spoon"
+      Author                  "NTIS / UWB"
+      Description             "Mathematical model of the Ball on the Spool wit"
+"h LQ regulator"
+      Customer                "NTIS / UWB"
+      FontSize                10
+      #GUID                   906dfcb1-702d-4911-a08a-ccf0cbee22f4
+    }
+    Block {
+      BlockType               Reference
+      Name                    "mic"
+      Ports                   [1, 1, 0, 0, 0]
+      Position                [110, 167, 160, 183]
+      SourceBlock             "execlib/TASK"
+      SID                     4
+      BackgroundColor         [1.000000, 0.749020, 0.749020]
+      LibraryVersion          "1.309"
+      SourceType              "TASK"
+      ShowPortLabels          "FromPortIcon"
+      SystemSampleTime        -1
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      factor                  1
+      start                   0
+      stop                    1
+      stack                   10240
+      MDLOPEN                 on
+      filename                ""
+      FontSize                10
+      #GUID                   774b55ed-d26f-45e5-9098-2d25dde4417d
+    }
+    Line {
+      SrcBlock                "EXEC"
+      SrcPort                 5
+      DstBlock                "mic"
+      DstPort                 1
+      #GUID                   8dd750ac-2cb1-4cd6-81c0-972572050076
+    }
+  }
+}

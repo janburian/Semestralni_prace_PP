@@ -1,0 +1,28 @@
+/* Místo pro kaskádové styly */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+header{
+    height: 5em;
+    background-color: #0074C5;
+}
+main{
+    flex:4;
+    background-color: #eef1f0;
+    color: #000000;
+}
+
+input:read-only{
+    background-color: #dfdfdf;
+}
+
