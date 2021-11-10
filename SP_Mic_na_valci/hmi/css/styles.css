@@ -26,3 +26,23 @@ input:read-only{
     background-color: #dfdfdf;
 }
 
+#leftbox {
+    float: left; 
+    background:white;
+    width: 300px;
+    height: 400px;
+    margin-left: 100px;
+}
+
+#rightbox{
+    float: right;
+    background:white;
+    width: 300px;
+    height: 400px;
+    margin-right: 100px;
+}
+
+
+
+
+
