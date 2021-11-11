@@ -57,7 +57,7 @@ REX.HMI.init = function () {
     }, false)
 
     let checkboxInput2 = document.querySelector('#nahodna_porucha'); 
-    checkboxInput.addEventListener('change', function (event) {
+    checkboxInput2.addEventListener('change', function (event) {
         if (checkboxInput2.checked) {
             REX.HMI.get('nahodna_porucha').write(true);
         } else {
@@ -66,7 +66,7 @@ REX.HMI.init = function () {
     }, false)
 
     let checkboxInput3 = document.querySelector('#reset_pp'); 
-    checkboxInput.addEventListener('change', function (event) {
+    checkboxInput3.addEventListener('change', function (event) {
         if (checkboxInput3.checked) {
             REX.HMI.get('reset_pp').write(true);
         } else {
@@ -80,13 +80,24 @@ REX.HMI.init = function () {
         REX.HMI.get('pocatecni_podminka').write(number); 
     }, false)
 
-    //REX.HMI.get('boolean').on('change', function (imt) {
-        //let value = itm.getValue(); 
-        //checkboxInput.checked = (value === 1); 
-    //}); 
+    REX.HMI.get('stouchnuti').on('change', function (itm) { // TODO: doladit
+        let value = itm.getValue(); 
+        checkboxInput.checked = (value === 1); 
+    }); 
 
-    var timer; 
+
+    // GLOBALS
     var mic = document.querySelector("#mic");
     var spulka = document.querySelector("#spulka");
+ 
+    function rotate(svgElement, angle) {
+        var cx = Number(svgElement.getAttribute("cx")); 
+        var cy = Number(svgElement.getAttribute("cy")); 
 
+        svgElement.setAttribute("transform", "rotate(" + angle + "," + cx + "," + cy + ")"); 
+    }
+
+    rotuj = function () {
+        rotate(mic, 2);
+    };
 };

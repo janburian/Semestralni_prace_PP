@@ -83,7 +83,7 @@ Model {
   ProdHWDeviceType        "32-bit Generic"
   ShowModelReferenceBlockVersion off
   ShowModelReferenceBlockIO off
-  #RexVersion             "2.50.99 rev. 12645, Date 2020-11-23"
+  #RexVersion             "2.50.10 rev. 12481, Date 2020-09-03"
   MdlSubVersion           0
   SaveDefaultBlockParams  on
   SampleTimeColors        off
@@ -168,12 +168,12 @@ Model {
   ShowModelReferenceBlockIO off
   #RexVersion             "2.50.1 rev. 7567 - REXCONV, Date 2016-11-7"
   ShowPortLabels          on
-  SavedCharacterEncoding  "UTF-8"
   MaskType                "REX sequence"
   MaskIconFrame           on
   MaskIconOpaque          on
   MaskIconRotate          "none"
   MaskIconUnits           "autoscale"
+  SavedCharacterEncoding  "UTF-8"
   BlockDefaults {
     ForegroundColor         "black"
     BackgroundColor         "white"
@@ -205,7 +205,7 @@ Model {
   }
   System {
     Name                    "mic"
-    Location                [212, 32, 1491, 589]
+    Location                [212, 32, 1491, 648]
     Open                    on
     ModelBrowserVisibility  off
     ModelBrowserWidth       200
@@ -292,7 +292,6 @@ Model {
       FontSize                10
       BackgroundColor         "magenta"
       #GUID                   4a5ba683-802d-4215-a1b4-c3f6cb1197cd
-      #SignalWatchMask        01
     }
     Block {
       BlockType               Reference
@@ -314,7 +313,7 @@ Model {
       Name                    "FNX_SIN"
       Ports                   [1, 2, 0, 0, 0]
       Position                [475, 208, 500, 232]
-      Orientation             left
+      Orientation             "left"
       SourceBlock             "mathlib/FNX"
       ifn                     "14: sin"
       yerr                    0
@@ -1098,7 +1097,7 @@ Model {
       Name                    "LPBRK4"
       Ports                   [1, 1, 0, 0, 0]
       Position                [585, 215, 595, 225]
-      Orientation             left
+      Orientation             "left"
       SourceBlock             "execlib/LPBRK"
       ShowName                off
       #GUID                   4ce25176-3f0e-49ef-ae51-4a4bd140f97c
@@ -1108,7 +1107,7 @@ Model {
       Name                    "LPBRK5"
       Ports                   [1, 1, 0, 0, 0]
       Position                [530, 170, 540, 180]
-      Orientation             left
+      Orientation             "left"
       SourceBlock             "execlib/LPBRK"
       ShowName                off
       #GUID                   6636f913-08e4-4917-8c7b-ab51244b8508
@@ -1118,7 +1117,7 @@ Model {
       Name                    "LPBRK6"
       Ports                   [1, 1, 0, 0, 0]
       Position                [555, 340, 565, 350]
-      Orientation             left
+      Orientation             "left"
       SourceBlock             "execlib/LPBRK"
       ShowName                off
       #GUID                   627ba03c-44d4-4ea9-8534-7ad4c9310633
@@ -1142,7 +1141,7 @@ Model {
       Ports                   [0, 1, 0, 0, 0]
       Position                [50, 293, 65, 307]
       SourceBlock             "genlib/MP"
-      BSTATE                  off
+      BSTATE                  on
       pwidth                  "0.5"
       RPTF                    off
       FontSize                10
