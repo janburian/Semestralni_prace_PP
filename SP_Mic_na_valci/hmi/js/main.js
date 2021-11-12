@@ -12,6 +12,19 @@ REX.HMI.init = function () {
         {alias:"pp_poloha_mice", cstring:"mic.CNR_y0:ycn", write: true}, // double
     ]);
 
+
+    // GLOBALS
+    var timer; 
+
+    var poloha_spulka; 
+    var rychlost_spulka; 
+
+    var poloha_mic; 
+    var rychlost_mic; 
+
+    var mic = document.querySelector("#mic");
+    var spulka = document.querySelector("#spulka");
+
     // VYSTUPY
     let fi1Input = document.getElementById('Fi1');
     REX.HMI.get('Fi1').on('change',function(itm){
@@ -19,6 +32,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi1Input.value = value;
+        poloha_spulka = value; 
     });
 
     let dfi1Input = document.getElementById('dFi1');
@@ -27,6 +41,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         dfi1Input.value = value;
+        rychlost_spulka = value; 
     });
 
     let fi2Input = document.getElementById('Fi2');
@@ -35,6 +50,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi2Input.value = value;
+        poloha_mic = value; 
     });
 
     let dfi2Input = document.getElementById('dFi2');
@@ -43,6 +59,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         dfi2Input.value = value;
+        rychlost_mic = value; 
     });
 
 
@@ -85,19 +102,43 @@ REX.HMI.init = function () {
         checkboxInput.checked = (value === 1); 
     }); 
 
-
-    // GLOBALS
-    var mic = document.querySelector("#mic");
-    var spulka = document.querySelector("#spulka");
  
-    function rotate(svgElement, angle) {
-        var cx = Number(svgElement.getAttribute("cx")); 
-        var cy = Number(svgElement.getAttribute("cy")); 
+    function rotateBall(svgElement1, svgElement2, poloha_rad) {
+        var poloha_deg = (poloha_rad * 180) / Math.PI;  
+        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
+        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
 
-        svgElement.setAttribute("transform", "rotate(" + angle + "," + cx + "," + cy + ")"); 
+        svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
 
-    rotuj = function () {
-        rotate(mic, 2);
+    function rotateSpool(svgElement, poloha_rad) {
+        var poloha_deg = (poloha_rad * 180) / Math.PI;  
+        var cx = Number(svgElement.childNodes[1].getAttribute("cx")); 
+        var cy = Number(svgElement.childNodes[1].getAttribute("cy")); 
+
+        svgElement.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
+    }
+
+
+    // Tato funkce se vola kdyz tikne tikac
+    function timer_Tick() {
+        rotateBall(mic, spulka, poloha_mic);
+        rotateSpool(spulka, poloha_spulka); 
+    }
+
+
+    // public - Verejne pristupne funkce
+       startTimer = function () {
+        if (timer != undefined) {
+            // Vypnuti casovace
+            clearInterval(timer);
+        }
+        // Casovac, ktery vola funkci timer1_Tick kaĹľdých 500 ms
+        timer = setInterval(timer_Tick, 500);
+    };
+
+    stopTimer = function () {
+        // Vypnuti casovace
+        clearInterval(timer);
     };
 };

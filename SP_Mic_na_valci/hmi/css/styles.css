@@ -29,17 +29,17 @@ input:read-only{
 #leftbox {
     float: left; 
     background:white;
-    width: 300px;
+    width: 350px;
     height: 400px;
-    margin-left: 250px;
+    margin-left: 100px;
 }
 
 #rightbox{
     float: right;
     background:white;
-    width: 300px;
+    width: 350px;
     height: 400px;
-    margin-right: 250px;
+    margin-right: 100px;
 }
 
 
