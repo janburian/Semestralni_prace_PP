@@ -26,20 +26,19 @@ input:read-only{
     background-color: #dfdfdf;
 }
 
+
 #leftbox {
     float: left; 
     background:white;
     width: 350px;
-    height: 400px;
-    margin-left: 100px;
+    height: 80%;
 }
 
 #rightbox{
     float: right;
     background:white;
     width: 350px;
-    height: 400px;
-    margin-right: 100px;
+    height: 80%;
 }
 
 
