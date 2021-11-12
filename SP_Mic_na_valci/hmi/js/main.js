@@ -111,6 +111,32 @@ REX.HMI.init = function () {
         svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
 
+    function animateBall(svgElement) {
+        svgElement.childNodes[7].setAttribute("attributeName", "transform"); 
+        svgElement.childNodes[7].setAttribute("attributeType", "XML"); 
+        svgElement.childNodes[7].setAttribute("type", "rotate");
+        svgElement.childNodes[7].setAttribute("attributeName", "transform"); 
+        svgElement.childNodes[7].setAttribute("from", "0 225 150"); 
+        svgElement.childNodes[7].setAttribute("to", "360 225 150"); 
+        svgElement.childNodes[7].setAttribute("dur", "10s");
+        svgElement.childNodes[7].setAttribute("repeatCount", "indefinite"); 
+    }
+
+    function animateBall2(svgElement) {
+
+        let rotate360 = [
+          { transform: 'rotate(360deg)' }
+        ];
+    
+        let slowInfinite = {
+          duration: 5000,
+          iterations: Infinity
+        }
+    
+        svgElement.animate( rotate360, slowInfinite );
+    }
+
+    
     function rotateSpool(svgElement, poloha_rad) {
         var poloha_deg = (poloha_rad * 180) / Math.PI;  
         var cx = Number(svgElement.childNodes[1].getAttribute("cx")); 
@@ -128,7 +154,7 @@ REX.HMI.init = function () {
 
 
     // public - Verejne pristupne funkce
-       startTimer = function () {
+       startTimer = function () { 
         if (timer != undefined) {
             // Vypnuti casovace
             clearInterval(timer);
