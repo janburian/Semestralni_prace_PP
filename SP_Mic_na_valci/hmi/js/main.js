@@ -103,7 +103,7 @@ REX.HMI.init = function () {
     }); 
 
  
-    function rotateBall(svgElement1, svgElement2, poloha_rad) {
+    function rotateBall_angle(svgElement1, svgElement2, poloha_rad) {
         var poloha_deg = (poloha_rad * 180) / Math.PI;  
         var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
         var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
@@ -111,32 +111,32 @@ REX.HMI.init = function () {
         svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
 
-    function animateBall(svgElement) {
-        svgElement.childNodes[7].setAttribute("attributeName", "transform"); 
-        svgElement.childNodes[7].setAttribute("attributeType", "XML"); 
-        svgElement.childNodes[7].setAttribute("type", "rotate");
-        svgElement.childNodes[7].setAttribute("attributeName", "transform"); 
-        svgElement.childNodes[7].setAttribute("from", "0 225 150"); 
-        svgElement.childNodes[7].setAttribute("to", "360 225 150"); 
-        svgElement.childNodes[7].setAttribute("dur", "10s");
-        svgElement.childNodes[7].setAttribute("repeatCount", "indefinite"); 
+    function rotateBallByAngle(svgElement) {
+        svgElement.children[1].setAttribute("from", "0 225 290"); 
+        svgElement.children[1].setAttribute("to", "360 225 290"); 
+        svgElement.children[1].setAttribute("dur", "5s");
+        svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
     }
 
-    function animateBall2(svgElement) {
-
-        let rotate360 = [
-          { transform: 'rotate(360deg)' }
-        ];
-    
-        let slowInfinite = {
-          duration: 5000,
-          iterations: Infinity
-        }
-    
-        svgElement.animate( rotate360, slowInfinite );
+    function rotateLines(svgElement) {
+        lines = svgElement.children[2]; 
+        lines.children[2].setAttribute("from", "0 225 150"); 
+        lines.children[2].setAttribute("to", "90 225 150"); 
+        lines.children[2].setAttribute("dur", "1s");
+        lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
-    
+    function rotateSpoolByAngle(svgElement) {
+        svgElement.children[3].setAttribute("from", "0 225 290"); 
+        svgElement.children[3].setAttribute("to", "360 225 290"); 
+        svgElement.children[3].setAttribute("dur", "3s");
+        svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
+    }
+
+    function countTimeDuration() {
+        return 0; 
+    }
+
     function rotateSpool(svgElement, poloha_rad) {
         var poloha_deg = (poloha_rad * 180) / Math.PI;  
         var cx = Number(svgElement.childNodes[1].getAttribute("cx")); 
@@ -148,8 +148,11 @@ REX.HMI.init = function () {
 
     // Tato funkce se vola kdyz tikne tikac
     function timer_Tick() {
-        rotateBall(mic, spulka, poloha_mic);
-        rotateSpool(spulka, poloha_spulka); 
+        //rotateBall_angle(mic, spulka, poloha_mic);
+        rotateBallByAngle(mic);
+        rotateLines(mic); 
+        //rotateSpool(spulka, poloha_spulka); 
+        rotateSpoolByAngle(spulka); 
     }
 
 
