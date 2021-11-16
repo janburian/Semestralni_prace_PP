@@ -31,27 +31,54 @@
                 </linearGradient>
               </defs>
 
-            <g id = "mic">
+            <g id="mic">
                 <circle cx="225" cy="150" r="60" stroke="black" stroke-width="2" fill="red"/> 
-                <line x1="220" y1="150" x2="230" y2="150" style="stroke:rgb(0, 0, 0);stroke-width:2" /> 
-                <line x1="225" y1="155" x2="225" y2="145" style="stroke:rgb(0, 0, 0);stroke-width:2" />
-                <!--<animateTransform attributeName="transform"
-                                  attributeType="XML"
-                                  type="rotate"
-                                  from="0 225 150"
-                                  to="360 225 150"
-                                  dur="1s"
-                                  repeatCount="indefinite"
-                                  from="0 225 150"
-                                  to="360 225 150"
-                                  dur="10s"
-                                  repeatCount="indefinite"/> -->
+                <animateTransform 
+                    xlink:href="#mic"
+                    attributeName="transform" 
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 225 290"
+                    to="90 225 290" 
+                    dur="1s"
+                    begin="0s"
+                    repeatCount="indefinite"
+                    fill="freeze" 
+                />
+                <g id="lines">
+                    <line x1="165" y1="150" x2="285" y2="150" style="stroke:rgb(0, 0, 0);stroke-width:1" /> 
+                    <line x1="225" y1="210" x2="225" y2="90" style="stroke:rgb(0, 0, 0);stroke-width:1" />
+                    <animateTransform 
+                        xlink:href="#lines"
+                        attributeName="transform" 
+                        attributeType="XML"
+                        type="rotate"
+                        from="0 225 150"
+                        to="360 225 150" 
+                        dur="0.5s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                        fill="freeze" 
+                    />
+                </g>               
             </g>
             
             <g id = "spulka">
                 <circle id cx="225" cy="290" r="80" stroke="black" stroke-width="2" fill="url(#grad1)" />
                 <line x1="220" y1="290" x2="230" y2="290" style="stroke:rgb(0, 0, 0);stroke-width:2" />
                 <line x1="225" y1="295" x2="225" y2="285" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+                <animateTransform 
+                    xlink:href="#spulka"
+                    attributeName="transform" 
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 225 290"
+                    to="90 225 290" 
+                    dur="1s"
+                    begin="0s"
+                    repeatCount="indefinite"
+                    fill="freeze" 
+                />
             </g>
             
         </svg>
