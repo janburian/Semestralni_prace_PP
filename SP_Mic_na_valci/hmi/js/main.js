@@ -32,6 +32,12 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi1Input.value = value;
+        if (akt_poloha_spulka != null) {
+            let deltaFi1 = value - akt_poloha_spulka;
+
+            var angle1 = value - deltaFi1; 
+            var angle2 = value; 
+        }
         akt_poloha_spulka = value; 
     });
 
@@ -50,6 +56,12 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi2Input.value = value;
+        if (akt_poloha_mic != null) {
+            let deltaFi2 = value - akt_poloha_mic;
+            
+            var angle1 = value - deltaFi2;
+            var angle2 = value; 
+        }
         akt_poloha_mic = value; 
     });
 
@@ -112,8 +124,8 @@ REX.HMI.init = function () {
     }
 
     function rotateBallByAngle(svgElement) {
-        svgElement.children[1].setAttribute("from", "0 225 290"); 
-        svgElement.children[1].setAttribute("to", "360 225 290"); 
+        svgElement.children[1].setAttribute("from", "-30 225 290"); 
+        svgElement.children[1].setAttribute("to", "30 225 290"); 
         svgElement.children[1].setAttribute("dur", "5s");
         svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
     }
@@ -121,8 +133,8 @@ REX.HMI.init = function () {
     function rotateLines(svgElement) {
         lines = svgElement.children[2]; 
         lines.children[2].setAttribute("from", "0 225 150"); 
-        lines.children[2].setAttribute("to", "90 225 150"); 
-        lines.children[2].setAttribute("dur", "1s");
+        lines.children[2].setAttribute("to", "360 225 150"); 
+        lines.children[2].setAttribute("dur", "0.5s");
         lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
@@ -133,11 +145,9 @@ REX.HMI.init = function () {
         svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
     }
 
-    function countTimeDuration() {
+    function countTimeDuration(delta, timedelta) {
         return 0; 
     }
-
-
 
     function rotateSpool(svgElement, poloha_rad) {
         var poloha_deg = (poloha_rad * 180) / Math.PI;  
@@ -150,7 +160,6 @@ REX.HMI.init = function () {
 
     // Tato funkce se vola kdyz tikne tikac
     function timer_Tick() {
-        
         //rotateBall_angle(mic, spulka, poloha_mic);
         rotateBallByAngle(mic);
         rotateLines(mic); 

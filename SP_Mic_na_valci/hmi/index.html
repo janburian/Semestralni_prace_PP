@@ -23,7 +23,7 @@
         <h1>Vizualizace - Jan Burian</h1>
     </header>
     <main id="content">
-        <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:450px; height: 400px; margin: 0 auto; background-color:#ffffff;">
+        <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:450px; height: 480px; margin: 0 auto; background-color:#ffffff;">
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
@@ -60,6 +60,11 @@
                     />
                 </g>               
             </g>
+            <g id="obdelnik">
+                <rect x="145" y="290" width="160" height="140" style="fill:grey;stroke:black;stroke-width:1;fill-opacity:0.8;stroke-opacity:0.9" />
+                <line x1="145" y1="290" x2="100" y2="200" style="stroke:rgb(0, 0, 0);stroke-width:4" /> 
+                <line x1="305" y1="290" x2="345" y2="200" style="stroke:rgb(0, 0, 0);stroke-width:4" />
+            </g>
             
             <g id = "spulka">
                 <circle id cx="225" cy="290" r="80" stroke="black" stroke-width="2" fill="url(#grad1)" />
@@ -78,7 +83,6 @@
                     fill="freeze" 
                 />
             </g>
-            
         </svg>
 
     <div id="rightbox">
