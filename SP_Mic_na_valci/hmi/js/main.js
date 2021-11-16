@@ -16,10 +16,10 @@ REX.HMI.init = function () {
     // GLOBALS
     var timer; 
 
-    var poloha_spulka; 
-    var rychlost_spulka; 
+    var akt_poloha_spulka;
+    var akt_poloha_mic;
 
-    var poloha_mic; 
+    var rychlost_spulka; 
     var rychlost_mic; 
 
     var mic = document.querySelector("#mic");
@@ -32,7 +32,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi1Input.value = value;
-        poloha_spulka = value; 
+        akt_poloha_spulka = value; 
     });
 
     let dfi1Input = document.getElementById('dFi1');
@@ -50,7 +50,7 @@ REX.HMI.init = function () {
         // Konverze číselné hodnoty na string s třemi desetinnými místy
         value = value.toFixed(3);
         fi2Input.value = value;
-        poloha_mic = value; 
+        akt_poloha_mic = value; 
     });
 
     let dfi2Input = document.getElementById('dFi2');
@@ -137,6 +137,8 @@ REX.HMI.init = function () {
         return 0; 
     }
 
+
+
     function rotateSpool(svgElement, poloha_rad) {
         var poloha_deg = (poloha_rad * 180) / Math.PI;  
         var cx = Number(svgElement.childNodes[1].getAttribute("cx")); 
@@ -148,6 +150,7 @@ REX.HMI.init = function () {
 
     // Tato funkce se vola kdyz tikne tikac
     function timer_Tick() {
+        
         //rotateBall_angle(mic, spulka, poloha_mic);
         rotateBallByAngle(mic);
         rotateLines(mic); 
