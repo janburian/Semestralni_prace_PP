@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        KKY/PP SVG Příklad 1
+    </title>
+    <!-- CSS -->
+    <style>
+        /* Místo pro kaskádové styly */
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            font-style: italic;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            height: 5em;
+            background-color: #c51e00;
+        }
+
+        main {
+            flex: 4;
+            background-color: #88d355;
+            color: #000000;
+        }
+
+        .rectangle {
+            height: 100px;
+            width: 100px;
+            background-color: #d3c655;
+            margin: 0 auto;
+            border-radius: 125px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <h1>KKY/PP Canvas Příklad 1</h1>
+    </header>
+    <main id="content">
+        <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:700px; height: 350px; margin: 0 auto;">
+            <g id="first">
+                <circle cx="120" cy="120" r="100" stroke="black" stroke-width="2" fill="red" />
+                <animateTransform 
+                xlink:href="#first"
+                attributeName="transform" 
+                attributeType="XML"
+                type="rotate"
+                from="0 120 340"
+                to="90 120 340" 
+                dur="1s"
+                begin="0s"
+                repeatCount="indefinite"
+                fill="freeze" 
+                />
+                <g id="lines">
+                    <line x1="20" y1="120" x2="220" y2="120" style="stroke:rgb(0, 0, 0);stroke-width:2" /> 
+                    <line x1="120" y1="20" x2="120" y2="220" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+                    <animateTransform 
+                        xlink:href="#lines"
+                        attributeName="transform" 
+                        attributeType="XML"
+                        type="rotate"
+                        from="0 120 120"
+                        to="360 120 120" 
+                        dur="0.5s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                        fill="freeze" 
+                    />
+                </g>
+            </g>
+                
+            <g id="second">
+                <circle cx="120" cy="340" r="120" stroke="black" stroke-width="2" fill="red" />
+                <animateTransform 
+                    xlink:href="#second"
+                    attributeName="transform" 
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 120 340"
+                    to="30 120 340" 
+                    dur="2s"
+                    begin="0s"
+                    repeatCount="indefinite"
+                    fill="freeze" />
+
+                    <g id="lines2">
+                        <line x1="0" y1="340" x2="240" y2="340" style="stroke:rgb(0, 0, 0);stroke-width:2" /> 
+                        <line x1="120" y1="460" x2="120" y2="220" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+                        <animateTransform 
+                            xlink:href="#lines2"
+                            attributeName="transform" 
+                            attributeType="XML"
+                            type="rotate"
+                            from="0 120 340"
+                            to="360 120 340" 
+                            dur="2s"
+                            begin="0s"
+                            repeatCount="indefinite"
+                            fill="freeze" 
+                        />
+                    </g>
+            </g>
+
+            <g transform="translate(240,20)">
+                <rect id="second" x="0" y="0" rx="20" ry="20" width="200" height="200" fill="yellow" stroke="black" stroke-width="2" />
+                <g id="seconds_hand">
+                    <line x1="100" y1="20" x2="100" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+                </g>
+            </g>
+            <g transform="translate(495,45)">
+                <g id="third" fill="purple">
+                    <rect x="0" y="0" rx="20" ry="20" width="150" height="150" fill="" stroke="black" stroke-width="2" />
+                </g>
+            </g>
+        </svg>
+        <div id="controls">
+            <button onclick="startTimer()">Spustit časovač</button>
+            <button onclick="stopTimer()">Zastavit časovač</button>
+            <button onclick="update()">Update</button>
+        </div>
+
+        <svg id="svgcanvas2" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:700px; height: 350px; margin: 0 auto;">
+            <circle id="krouzek" cx="350" cy="200" r="100" stroke="gold" stroke-width="4" fill="blue" />
+        </svg>
+
+        Další materiály:
+        <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Mozilla MDN SVG</a>
+        
+        <div class = "rectangle">
+            <p>Ahoj</p>
+        </div>
+
+        <!-- JS -->
+        <!-- Spusti se jakmile je stranka nactena -->
+        <script type="text/javascript">
+
+            // Globalni promenne 
+            var timer, actTime;
+            var svg = document.getElementById("svgcanvas");
+            var first = svg.getElementById("first");
+            var second = svg.getElementById("second");
+            var third = svg.getElementById("third");
+            var seconds_hand = svg.getElementById("seconds_hand");
+
+            var i = 0; 
+            var k = document.querySelector("#krouzek"); 
+            var angle = 6;
+
+        
+            // private  - Místní funkce
+            // Zmena barvy vybraného elementu
+            function changeRandomColor(svgElement) {
+                var red = Math.round(Math.random() * 255);
+                var green = Math.round(Math.random() * 255);
+                var blue = Math.round(Math.random() * 255);
+                // Nastavíme barvu jako atribut fill    
+                svgElement.setAttributeNS(null, "fill", "rgb(" + red + "," + green + "," + blue + ")");
+            }
+
+            function changeRandomColorRastr(element) {
+                var red = Math.round(Math.random() * 255);
+                var green = Math.round(Math.random() * 255);
+                var blue = Math.round(Math.random() * 255);
+                
+                element.setAttribute("style", "background-color: rgb(" + red + "," + green + "," + blue + ")");
+            }
+
+            // Rotace elementu dle stredu
+            function rotate(svgElement, angle) {
+                var width = svgElement.getBBox().width;
+                var height = svgElement.getBBox().height;
+                // Rotace elementu podle stredu
+                svgElement.setAttributeNS(null, "transform", "rotate(" + angle + "," + width / 2 + "," + height / 2 + ")");
+
+            }
+
+            function rotateCircle(svgElement, angle) {
+                var cx = Number(svgElement.childNodes[1].getAttribute("cx")); 
+                var cy = Number(svgElement.childNodes[1].getAttribute("cy")); 
+
+                svgElement.setAttribute("transform", "rotate(" + angle + "," + cx + "," + cy + ")"); 
+
+            }
+
+            // Aktualizace vterinove rucicky
+            function updateTime() {
+                // sirka predka
+                var width = seconds_hand.parentNode.getBBox().width;
+                //vyska predka
+                var height = seconds_hand.parentNode.getBBox().height;
+                // uhel natoceni dle casu
+                var angle = (actTime.getSeconds() / 60) * 360;
+
+                // Rotace elementu podle stredu predka    
+                seconds_hand.setAttributeNS(null, "transform", "rotate(" + angle + "," + width / 2 + "," + height / 2 + ")");
+            }
+
+            // Tato funkce se vola kdyz tikne tikac
+            function timer_Tick() {
+                // Aktualizace data a času
+                actTime = new Date();
+
+                // Změna barvy svg prvku    
+                //changeRandomColor(first);
+
+                // Změna barvy svg prvku
+                rotate(third, (actTime.getSeconds() / 60) * 360);
+                rotateCircle(first, angle);
+
+                // Posun ručičky
+                updateTime();
+
+                 // zmena barvy 
+                var e = document.querySelector("div.rectangle")
+                //e.setAttribute("style", "background-color: blue")
+                //e.style.backgroundColor = "red";
+                changeRandomColorRastr(e); 
+
+                k.setAttributeNS(null, "stroke-width", Math.round(Math.random() * 100)); 
+                i++; 
+                angle += 6;
+                
+            }
+
+            // public - Verejne pristupne funkce
+            startTimer = function () {
+                if (timer != undefined) {
+                    // Vypnuti casovace
+                    clearInterval(timer);
+                }
+                // Casovac, ktery vola funkci timer1_Tick kaĹľdých 1000 ms
+                timer = setInterval(timer_Tick, 1000);
+            };
+
+            stopTimer = function () {
+                // Vypnuti casovace
+                clearInterval(timer);
+                rotate(third, 0);
+                rotate(seconds_hand, 0);
+                rotateCircle(first, 0); 
+            };
+
+            update = function () {
+                first.children[3].setAttribute("dur", "0.3"); 
+                first.children[3].setAttribute("from", "0 120 120"); 
+                first.children[3].setAttribute("to", to="360 120 120" ); 
+            }
+        </script>
+    </main>
+</body>
+
+</html>
