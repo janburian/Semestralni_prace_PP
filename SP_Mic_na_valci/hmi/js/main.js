@@ -22,6 +22,9 @@ REX.HMI.init = function () {
     var rychlost_spulka; 
     var rychlost_mic; 
 
+    var timestamp_akt_poloha_spulka;
+    var timestamp_akt_poloha_mic;
+
     var mic = document.querySelector("#mic");
     var spulka = document.querySelector("#spulka");
 
@@ -34,11 +37,16 @@ REX.HMI.init = function () {
         fi1Input.value = value;
         if (akt_poloha_spulka != null) {
             let deltaFi1 = value - akt_poloha_spulka;
+            var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
+            var ellapsed_time_seconds = (ellapsed_time / 1000); // Math.floor? 
 
             var angle1 = value - deltaFi1; 
             var angle2 = value; 
+
+            rotateSpoolByAngle(spulka, angle1, angle2, ellapsed_time_seconds); 
         }
         akt_poloha_spulka = value; 
+        timestamp_akt_poloha_spulka = Date.now();
     });
 
     let dfi1Input = document.getElementById('dFi1');
@@ -58,11 +66,16 @@ REX.HMI.init = function () {
         fi2Input.value = value;
         if (akt_poloha_mic != null) {
             let deltaFi2 = value - akt_poloha_mic;
+            var ellapsed_time = Date.now() - timestamp_akt_poloha_mic; 
+            var ellapsed_time_seconds = (ellapsed_time / 1000); 
             
             var angle1 = value - deltaFi2;
             var angle2 = value; 
+
+            rotateBallByAngle(mic, angle1, angle2, ellapsed_time_seconds); 
         }
         akt_poloha_mic = value; 
+        timestamp_akt_poloha_mic = Date.now();
     });
 
     let dfi2Input = document.getElementById('dFi2');
@@ -123,26 +136,38 @@ REX.HMI.init = function () {
         svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
 
-    function rotateBallByAngle(svgElement) {
-        svgElement.children[1].setAttribute("from", "-30 225 290"); 
-        svgElement.children[1].setAttribute("to", "30 225 290"); 
-        svgElement.children[1].setAttribute("dur", "5s");
-        svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
+    function rotateBallByAngle(svgElement, angle_from, angle_to, dur) {
+        var angle_from_degrees = ((angle_from * 180) / Math.PI).toString(); 
+        var angle_to_degrees = ((angle_to * 180) / Math.PI).toString(); 
+        var dur_string = dur.toString(); 
+
+        svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
+        svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
+        svgElement.children[1].setAttribute("dur", dur_string + "s");
+        //svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
     }
 
-    function rotateLines(svgElement) {
+    function rotateLines(svgElement, angle_from, angle_to, dur) {
+        var angle_from_degrees = ((angle_from * 180) / Math.PI).toString(); 
+        var angle_to_degrees = ((angle_to * 180) / Math.PI).toString(); 
+        var dur_string = dur.toString(); 
+
         lines = svgElement.children[2]; 
-        lines.children[2].setAttribute("from", "0 225 150"); 
-        lines.children[2].setAttribute("to", "360 225 150"); 
-        lines.children[2].setAttribute("dur", "0.5s");
-        lines.children[2].setAttribute("repeatCount", "indefinite"); 
+        lines.children[2].setAttribute("from", angle_from_degrees + " " + "225 150"); 
+        lines.children[2].setAttribute("to", angle_to_degrees + " " + "225 150"); 
+        lines.children[2].setAttribute("dur", dur_string + "s");
+        //lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
-    function rotateSpoolByAngle(svgElement) {
-        svgElement.children[3].setAttribute("from", "0 225 290"); 
-        svgElement.children[3].setAttribute("to", "360 225 290"); 
-        svgElement.children[3].setAttribute("dur", "3s");
-        svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
+    function rotateSpoolByAngle(svgElement, angle_from, angle_to, dur) {
+        var angle_from_degrees = ((angle_from * 180) / Math.PI).toString(); 
+        var angle_to_degrees = ((angle_to * 180) / Math.PI).toString(); 
+        var dur_string = dur.toString(); 
+
+        svgElement.children[3].setAttribute("from", angle_from_degrees + " " + "225 290"); 
+        svgElement.children[3].setAttribute("to", angle_to_degrees + " " + "225 290"); 
+        svgElement.children[3].setAttribute("dur", dur_string + "s");
+        //svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
     }
 
     function countTimeDuration(delta, timedelta) {
@@ -161,10 +186,10 @@ REX.HMI.init = function () {
     // Tato funkce se vola kdyz tikne tikac
     function timer_Tick() {
         //rotateBall_angle(mic, spulka, poloha_mic);
-        rotateBallByAngle(mic);
-        rotateLines(mic); 
+        //rotateBallByAngle(mic);
+        //rotateLines(mic); 
         //rotateSpool(spulka, poloha_spulka); 
-        rotateSpoolByAngle(spulka); 
+        //rotateSpoolByAngle(spulka); 
     }
 
 
