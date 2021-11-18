@@ -38,7 +38,6 @@ REX.HMI.init = function () {
         if (akt_poloha_spulka != null) {
             let deltaFi1 = value - akt_poloha_spulka;
             var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
-            var ellapsed_time_seconds = (ellapsed_time / 1000); // Math.floor? 
 
             var angle_spool_1 = value - deltaFi1; 
             var angle_spool_2 = value; 
@@ -47,8 +46,8 @@ REX.HMI.init = function () {
             var angle_lines_1 = value; // mic se bude tocit stejne rychle jako spulka, jen uhly budou opacne a s jinym znamenkem
             var angle_lines_2 = value - (deltaFi1 * pomer_spulka_mic);
 
-            rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time_seconds); 
-            rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time_seconds);
+            rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time); 
+            rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time);
         }
         akt_poloha_spulka = value; 
         timestamp_akt_poloha_spulka = Date.now();
@@ -72,12 +71,11 @@ REX.HMI.init = function () {
         if (akt_poloha_mic != null) {
             let deltaFi2 = value - akt_poloha_mic;
             var ellapsed_time = Date.now() - timestamp_akt_poloha_mic; 
-            var ellapsed_time_seconds = (ellapsed_time / 1000); 
             
             var angle1 = value - deltaFi2;
             var angle2 = value; 
 
-            rotateBallByAngle(mic, angle1, angle2, ellapsed_time_seconds); 
+            rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
         }
         akt_poloha_mic = value; 
         timestamp_akt_poloha_mic = Date.now();
@@ -94,15 +92,6 @@ REX.HMI.init = function () {
 
 
     // VSTUPY
-    // let checkboxInput = document.querySelector('#stouchnuti'); 
-    // checkboxInput.addEventListener('change', function (event) {
-    //     if (checkboxInput.checked) {
-    //         REX.HMI.get('stouchnuti').write(true);
-    //     } else {
-    //         REX.HMI.get('stouchnuti').write(false);
-    //     }
-    // }, false)
-
     nudge = function () {
         REX.HMI.get('stouchnuti').write(true); 
     }
@@ -121,25 +110,17 @@ REX.HMI.init = function () {
         REX.HMI.get('reset_pp').write(true);
     }
 
-    // let checkboxInput3 = document.querySelector('#reset_pp'); 
-    // checkboxInput3.addEventListener('change', function (event) {
-    //     if (checkboxInput3.checked) {
-    //         REX.HMI.get('reset_pp').write(true);
-    //     } else {
-    //         REX.HMI.get('reset_pp').write(false);
-    //     }
-    // }, false)
-
-    let numberInput = document.querySelector('#pocatecni_podminka');  
+    let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
         let number = Number(numberInput.value); 
-        REX.HMI.get('pocatecni_podminka').write(number); 
+        akt_poloha_mic = number; 
+        REX.HMI.get('pp_poloha_mice').write(number); 
     }, false)
 
-    REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
-        let value = itm.getValue(); 
-        checkboxInput.checked = (value === 1); 
-    }); 
+    // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
+    //     let value = itm.getValue(); 
+    //     checkboxInput.checked = (value === 1); 
+    // }); 
 
  
     function rotateBall_angle(svgElement1, svgElement2, poloha_rad) {
@@ -157,7 +138,7 @@ REX.HMI.init = function () {
 
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
-        svgElement.children[1].setAttribute("dur", dur_string + "s");
+        svgElement.children[1].setAttribute("dur", dur_string + "ms");
         //svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
     }
 
@@ -169,7 +150,7 @@ REX.HMI.init = function () {
         lines = svgElement.children[2]; 
         lines.children[2].setAttribute("from", angle_from_degrees + " " + "225 150"); 
         lines.children[2].setAttribute("to", angle_to_degrees + " " + "225 150"); 
-        lines.children[2].setAttribute("dur", dur_string + "s");
+        lines.children[2].setAttribute("dur", dur_string + "ms");
         //lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
@@ -180,7 +161,7 @@ REX.HMI.init = function () {
 
         svgElement.children[3].setAttribute("from", angle_from_degrees + " " + "225 290"); 
         svgElement.children[3].setAttribute("to", angle_to_degrees + " " + "225 290"); 
-        svgElement.children[3].setAttribute("dur", dur_string + "s");
+        svgElement.children[3].setAttribute("dur", dur_string + "ms");
         //svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
     }
 
