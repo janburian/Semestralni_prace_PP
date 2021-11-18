@@ -12,7 +12,6 @@ REX.HMI.init = function () {
         {alias:"pp_poloha_mice", cstring:"mic.CNR_y0:ycn", write: true}, // double
     ]);
 
-
     // GLOBALS
     var timer; 
 
@@ -29,66 +28,68 @@ REX.HMI.init = function () {
     var spulka = document.querySelector("#spulka");
 
     // VYSTUPY
-    let fi1Input = document.getElementById('Fi1');
-    REX.HMI.get('Fi1').on('change',function(itm){
-        let value = itm.getValue();
-        // Konverze číselné hodnoty na string s třemi desetinnými místy
-        value = value.toFixed(3);
-        fi1Input.value = value;
-        if (akt_poloha_spulka != null) {
-            let deltaFi1 = value - akt_poloha_spulka;
-            var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
+    function readData() {
+        let fi1Input = document.getElementById('Fi1');
+        REX.HMI.get('Fi1').on('change',function(itm){
+            let value = itm.getValue();
+            // Konverze číselné hodnoty na string s třemi desetinnými místy
+            value = value.toFixed(3);
+            fi1Input.value = value;
+            if (akt_poloha_spulka != null) {
+                let deltaFi1 = value - akt_poloha_spulka;
+                var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
 
-            var angle_spool_1 = value - deltaFi1; 
-            var angle_spool_2 = value; 
+                var angle_spool_1 = value - deltaFi1; 
+                var angle_spool_2 = value; 
 
-            var pomer_spulka_mic = 80 / 60; 
-            var angle_lines_1 = value; // mic se bude tocit stejne rychle jako spulka, jen uhly budou opacne a s jinym znamenkem
-            var angle_lines_2 = value - (deltaFi1 * pomer_spulka_mic);
+                var pomer_spulka_mic = 80 / 60; 
+                var angle_lines_1 = value; // mic se bude tocit stejne rychle jako spulka, jen uhly budou opacne a s jinym znamenkem
+                var angle_lines_2 = value - (deltaFi1 * pomer_spulka_mic);
 
-            rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time); 
-            rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time);
-        }
-        akt_poloha_spulka = value; 
-        timestamp_akt_poloha_spulka = Date.now();
-    });
+                rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time); 
+                rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time);
+            }
+            akt_poloha_spulka = value; 
+            timestamp_akt_poloha_spulka = Date.now();
+        });
 
-    let dfi1Input = document.getElementById('dFi1');
-    REX.HMI.get('dFi1').on('change',function(itm){
-        let value = itm.getValue();
-        // Konverze číselné hodnoty na string s třemi desetinnými místy
-        value = value.toFixed(3);
-        dfi1Input.value = value;
-        rychlost_spulka = value; 
-    });
+        let dfi1Input = document.getElementById('dFi1');
+        REX.HMI.get('dFi1').on('change',function(itm){
+            let value = itm.getValue();
+            // Konverze číselné hodnoty na string s třemi desetinnými místy
+            value = value.toFixed(3);
+            dfi1Input.value = value;
+            rychlost_spulka = value; 
+        });
 
-    let fi2Input = document.getElementById('Fi2');
-    REX.HMI.get('Fi2').on('change',function(itm){
-        let value = itm.getValue();
-        // Konverze číselné hodnoty na string s třemi desetinnými místy
-        value = value.toFixed(3);
-        fi2Input.value = value;
-        if (akt_poloha_mic != null) {
-            let deltaFi2 = value - akt_poloha_mic;
-            var ellapsed_time = Date.now() - timestamp_akt_poloha_mic; 
-            
-            var angle1 = value - deltaFi2;
-            var angle2 = value; 
+        let fi2Input = document.getElementById('Fi2');
+        REX.HMI.get('Fi2').on('change',function(itm){
+            let value = itm.getValue();
+            // Konverze číselné hodnoty na string s třemi desetinnými místy
+            value = value.toFixed(3);
+            fi2Input.value = value;
+            if (akt_poloha_mic != null) {
+                let deltaFi2 = value - akt_poloha_mic;
+                var ellapsed_time = Date.now() - timestamp_akt_poloha_mic; 
+                
+                var angle1 = value - deltaFi2;
+                var angle2 = value; 
 
-            rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
-        }
-        akt_poloha_mic = value; 
-        timestamp_akt_poloha_mic = Date.now();
-    });
+                rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
+            }
+            akt_poloha_mic = value; 
+            timestamp_akt_poloha_mic = Date.now();
+        });
 
-    let dfi2Input = document.getElementById('dFi2');
-    REX.HMI.get('dFi2').on('change',function(itm){
-        let value = itm.getValue();
-        // Konverze číselné hodnoty na string s třemi desetinnými místy
-        value = value.toFixed(3);
-        dfi2Input.value = value;
-        rychlost_mic = value; 
-    });
+        let dfi2Input = document.getElementById('dFi2');
+        REX.HMI.get('dFi2').on('change',function(itm){
+            let value = itm.getValue();
+            // Konverze číselné hodnoty na string s třemi desetinnými místy
+            value = value.toFixed(3);
+            dfi2Input.value = value;
+            rychlost_mic = value; 
+        });
+    }
 
 
     // VSTUPY
@@ -113,8 +114,9 @@ REX.HMI.init = function () {
     let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
         let number = Number(numberInput.value); 
-        akt_poloha_mic = number; 
         REX.HMI.get('pp_poloha_mice').write(number); 
+        rotateBall_angle(mic, spulka, number); 
+        akt_poloha_mic = number;
     }, false)
 
     // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
@@ -122,14 +124,6 @@ REX.HMI.init = function () {
     //     checkboxInput.checked = (value === 1); 
     // }); 
 
- 
-    function rotateBall_angle(svgElement1, svgElement2, poloha_rad) {
-        var poloha_deg = (poloha_rad * 180) / Math.PI;  
-        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
-        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
-
-        svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
-    }
 
     function rotateBallByAngle(svgElement, angle_from, angle_to, dur) {
         var angle_from_degrees = ((angle_from * 180) / Math.PI).toString(); 
@@ -139,7 +133,14 @@ REX.HMI.init = function () {
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
         svgElement.children[1].setAttribute("dur", dur_string + "ms");
-        //svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
+    }
+
+    function rotateBall_angle(svgElement1, svgElement2, poloha_rad) {
+        var poloha_deg = (poloha_rad * 180) / Math.PI;  
+        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
+        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
+
+        svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
 
     function rotateLines(svgElement, angle_from, angle_to, dur) {
@@ -151,7 +152,6 @@ REX.HMI.init = function () {
         lines.children[2].setAttribute("from", angle_from_degrees + " " + "225 150"); 
         lines.children[2].setAttribute("to", angle_to_degrees + " " + "225 150"); 
         lines.children[2].setAttribute("dur", dur_string + "ms");
-        //lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
     function rotateSpoolByAngle(svgElement, angle_from, angle_to, dur) {
@@ -162,7 +162,7 @@ REX.HMI.init = function () {
         svgElement.children[3].setAttribute("from", angle_from_degrees + " " + "225 290"); 
         svgElement.children[3].setAttribute("to", angle_to_degrees + " " + "225 290"); 
         svgElement.children[3].setAttribute("dur", dur_string + "ms");
-        //svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
+
     }
 
     function rotateSpool(svgElement, poloha_rad) {
@@ -172,7 +172,6 @@ REX.HMI.init = function () {
 
         svgElement.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
     }
-
 
     // Tato funkce se vola kdyz tikne tikac
     function timer_Tick() {
@@ -185,17 +184,11 @@ REX.HMI.init = function () {
 
 
     // public - Verejne pristupne funkce
-       startTimer = function () { 
-        if (timer != undefined) {
-            // Vypnuti casovace
-            clearInterval(timer);
-        }
-        // Casovac, ktery vola funkci timer1_Tick kaĹľdých 500 ms
-        timer = setInterval(timer_Tick, 500);
+    start = function () { 
+        readData(); 
     };
 
-    stopTimer = function () {
-        // Vypnuti casovace
-        clearInterval(timer);
+    stop = function () {
+       //REX.HMI.get('nahodna_porucha').write(false);
     };
 };
