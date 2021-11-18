@@ -40,10 +40,15 @@ REX.HMI.init = function () {
             var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
             var ellapsed_time_seconds = (ellapsed_time / 1000); // Math.floor? 
 
-            var angle1 = value - deltaFi1; 
-            var angle2 = value; 
+            var angle_spool_1 = value - deltaFi1; 
+            var angle_spool_2 = value; 
 
-            rotateSpoolByAngle(spulka, angle1, angle2, ellapsed_time_seconds); 
+            var pomer_spulka_mic = 80 / 60; 
+            var angle_lines_1 = value; // mic se bude tocit stejne rychle jako spulka, jen uhly budou opacne a s jinym znamenkem
+            var angle_lines_2 = value - (deltaFi1 * pomer_spulka_mic);
+
+            rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time_seconds); 
+            rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time_seconds);
         }
         akt_poloha_spulka = value; 
         timestamp_akt_poloha_spulka = Date.now();
@@ -168,10 +173,6 @@ REX.HMI.init = function () {
         svgElement.children[3].setAttribute("to", angle_to_degrees + " " + "225 290"); 
         svgElement.children[3].setAttribute("dur", dur_string + "s");
         //svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
-    }
-
-    function countTimeDuration(delta, timedelta) {
-        return 0; 
     }
 
     function rotateSpool(svgElement, poloha_rad) {

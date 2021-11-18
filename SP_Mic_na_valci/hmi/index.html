@@ -86,53 +86,50 @@
         </svg>
 
     <div id="rightbox">
+        <h2>Information</h2>
         <div>
-            <p>Poloha spulky [rad]</p>
-            <label for="Fi1">Hodnota</label>
+            <p>Motor angle [rad]</p>
             <input type="text" id="Fi1" name="Fi1" value="NaN" readonly>            
         </div>
 
         <div>
-            <p>Rychlost spulky [rad/s]</p>
-            <label for="dFi1">Hodnota</label>
+            <p>Motor speed [rad/s]</p>
             <input type="text" id="dFi1" name="dFi1" value="NaN" readonly>            
         </div>
 
         <div>
-            <p>Poloha stredu mice vzhledem ke stredu spulky [rad]</p>
-            <label for="Fi2">Hodnota</label>
+            <p>Ball angle [rad]</p>
             <input type="text" id="Fi2" name="Fi2" value="NaN" readonly>            
         </div>
 
         <div>
-            <p>Rychlost mice [rad/s]</p>
-            <label for="dFi2">Hodnota</label>
+            <p>Ball speed [rad/s]</p>
             <input type="text" id="dFi2" name="dFi2" value="NaN" readonly>            
         </div>
     </div>
 
     <div id="leftbox">
+        <h2>Controls</h2>
         <div>
-            <p>Stouchnuti:</p>
+            <p>Nudge:</p>
             <input type="checkbox" id="stouchnuti" name="stouchnuti">
             <label for="stouchnuti">ON/OFF</label> 
         </div>
 
         <div>
-            <p>Nahodna porucha:</p>
+            <p>Disturbance:</p>
             <input type="checkbox" id="nahodna_porucha" name="nahodna_porucha">
             <label for="nahodna_porucha">ON/OFF</label> 
         </div>
 
         <div>
-            <p>Reset modelu do pocatecnich podminek:</p>
+            <p>Reset:</p>
             <input type="checkbox" id="reset_pp" name="reset_pp">
             <label for="reset_pp">ON/OFF</label> 
         </div>
 
         <div>
-            <p>Nastaveni pocatecni podminky pro polohu mice:</p>
-            <label for="pocatecni_podminka">Cislo</label>
+            <p>Initial ball angle:</p>
             <input type="number" id="pocatecni_podminka" name="pocatecni_podminka" value="0" step=0.005>
             <br>
         </div>
