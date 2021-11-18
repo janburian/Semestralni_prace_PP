@@ -111,27 +111,24 @@
     <div id="leftbox">
         <h2>Controls</h2>
         <div>
-            <p>Nudge:</p>
-            <input type="checkbox" id="stouchnuti" name="stouchnuti">
-            <label for="stouchnuti">ON/OFF</label> 
+            <button onClick="nudge()">Nudge</button>
         </div>
 
-        <div>
-            <p>Disturbance:</p>
-            <input type="checkbox" id="nahodna_porucha" name="nahodna_porucha">
-            <label for="nahodna_porucha">ON/OFF</label> 
+        <div class="vertical_space">
+            <p>Disturbance (OFF/ON)</p>
+            <label class="switch">
+                <input type="checkbox" id="nahodna_porucha" name="nahodna_porucha">
+                <span class="slider round"></span>
+              </label>
         </div>
 
-        <div>
-            <p>Reset:</p>
-            <input type="checkbox" id="reset_pp" name="reset_pp">
-            <label for="reset_pp">ON/OFF</label> 
+        <div class="vertical_space">
+            <button onClick="reset()">Reset</button>
         </div>
 
-        <div>
+        <div class="vertical_space">
             <p>Initial ball angle:</p>
             <input type="number" id="pocatecni_podminka" name="pocatecni_podminka" value="0" step=0.005>
-            <br>
         </div>
     </div>
 

@@ -94,14 +94,18 @@ REX.HMI.init = function () {
 
 
     // VSTUPY
-    let checkboxInput = document.querySelector('#stouchnuti'); 
-    checkboxInput.addEventListener('change', function (event) {
-        if (checkboxInput.checked) {
-            REX.HMI.get('stouchnuti').write(true);
-        } else {
-            REX.HMI.get('stouchnuti').write(false);
-        }
-    }, false)
+    // let checkboxInput = document.querySelector('#stouchnuti'); 
+    // checkboxInput.addEventListener('change', function (event) {
+    //     if (checkboxInput.checked) {
+    //         REX.HMI.get('stouchnuti').write(true);
+    //     } else {
+    //         REX.HMI.get('stouchnuti').write(false);
+    //     }
+    // }, false)
+
+    nudge = function () {
+        REX.HMI.get('stouchnuti').write(true); 
+    }
 
     let checkboxInput2 = document.querySelector('#nahodna_porucha'); 
     checkboxInput2.addEventListener('change', function (event) {
@@ -112,14 +116,19 @@ REX.HMI.init = function () {
         }
     }, false)
 
-    let checkboxInput3 = document.querySelector('#reset_pp'); 
-    checkboxInput3.addEventListener('change', function (event) {
-        if (checkboxInput3.checked) {
-            REX.HMI.get('reset_pp').write(true);
-        } else {
-            REX.HMI.get('reset_pp').write(false);
-        }
-    }, false)
+
+    reset = function () {
+        REX.HMI.get('reset_pp').write(true);
+    }
+
+    // let checkboxInput3 = document.querySelector('#reset_pp'); 
+    // checkboxInput3.addEventListener('change', function (event) {
+    //     if (checkboxInput3.checked) {
+    //         REX.HMI.get('reset_pp').write(true);
+    //     } else {
+    //         REX.HMI.get('reset_pp').write(false);
+    //     }
+    // }, false)
 
     let numberInput = document.querySelector('#pocatecni_podminka');  
     numberInput.addEventListener('change', function (event) {
@@ -127,7 +136,7 @@ REX.HMI.init = function () {
         REX.HMI.get('pocatecni_podminka').write(number); 
     }, false)
 
-    REX.HMI.get('stouchnuti').on('change', function (itm) { // TODO: doladit
+    REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
         let value = itm.getValue(); 
         checkboxInput.checked = (value === 1); 
     }); 
