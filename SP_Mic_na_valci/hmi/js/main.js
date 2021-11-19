@@ -28,7 +28,7 @@ REX.HMI.init = function () {
     var spulka = document.querySelector("#spulka");
 
     // VYSTUPY
-    function readData() {
+    function startAnimation() {
         let fi1Input = document.getElementById('Fi1');
         REX.HMI.get('Fi1').on('change',function(itm){
             let value = itm.getValue();
@@ -111,12 +111,24 @@ REX.HMI.init = function () {
         REX.HMI.get('reset_pp').write(true);
     }
 
+    function rotateBall_angle(svgElement1, svgElement2, poloha_deg) {
+        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
+        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
+
+        //var ball = svgElement1.children[0]; 
+
+        var oper = "rotate(" + poloha_deg + "," + cx + "," + cy + ")"; 
+
+        svgElement1.setAttribute("transform", oper); 
+    }
+
     let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
-        let number = Number(numberInput.value); 
-        REX.HMI.get('pp_poloha_mice').write(number); 
-        rotateBall_angle(mic, spulka, number); 
-        akt_poloha_mic = number;
+        let number = Number(numberInput.value);  
+        REX.HMI.get('pp_poloha_mice').write((number / 180) * Math.PI); // mozna hodnota v radianech
+        number_rad = (number / 180) * Math.PI; 
+        rotateBall_angle(mic, spulka, number);
+        akt_poloha_mic = number_rad;  
     }, false)
 
     // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
@@ -132,15 +144,7 @@ REX.HMI.init = function () {
 
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
-        svgElement.children[1].setAttribute("dur", dur_string + "ms");
-    }
-
-    function rotateBall_angle(svgElement1, svgElement2, poloha_rad) {
-        var poloha_deg = (poloha_rad * 180) / Math.PI;  
-        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
-        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
-
-        svgElement1.setAttribute("transform", "rotate(" + poloha_deg + "," + cx + "," + cy + ")"); 
+        svgElement.children[1].setAttribute("dur", dur_string + "s"); //ms
     }
 
     function rotateLines(svgElement, angle_from, angle_to, dur) {
@@ -185,7 +189,7 @@ REX.HMI.init = function () {
 
     // public - Verejne pristupne funkce
     start = function () { 
-        readData(); 
+        startAnimation(); 
     };
 
     stop = function () {

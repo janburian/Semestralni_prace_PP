@@ -56,65 +56,17 @@
         <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:700px; height: 350px; margin: 0 auto;">
             <g id="first">
                 <circle cx="120" cy="120" r="100" stroke="black" stroke-width="2" fill="red" />
-                <animateTransform 
-                xlink:href="#first"
-                attributeName="transform" 
-                attributeType="XML"
-                type="rotate"
-                from="0 120 340"
-                to="90 120 340" 
-                dur="1s"
-                begin="0s"
-                repeatCount="indefinite"
-                fill="freeze" 
-                />
                 <g id="lines">
                     <line x1="20" y1="120" x2="220" y2="120" style="stroke:rgb(0, 0, 0);stroke-width:2" /> 
                     <line x1="120" y1="20" x2="120" y2="220" style="stroke:rgb(0, 0, 0);stroke-width:2" />
-                    <animateTransform 
-                        xlink:href="#lines"
-                        attributeName="transform" 
-                        attributeType="XML"
-                        type="rotate"
-                        from="0 120 120"
-                        to="360 120 120" 
-                        dur="0.5s"
-                        begin="0s"
-                        repeatCount="indefinite"
-                        fill="freeze" 
-                    />
                 </g>
             </g>
                 
             <g id="second">
                 <circle cx="120" cy="340" r="120" stroke="black" stroke-width="2" fill="red" />
-                <animateTransform 
-                    xlink:href="#second"
-                    attributeName="transform" 
-                    attributeType="XML"
-                    type="rotate"
-                    from="0 120 340"
-                    to="30 120 340" 
-                    dur="2s"
-                    begin="0s"
-                    repeatCount="indefinite"
-                    fill="freeze" />
-
                     <g id="lines2">
                         <line x1="0" y1="340" x2="240" y2="340" style="stroke:rgb(0, 0, 0);stroke-width:2" /> 
                         <line x1="120" y1="460" x2="120" y2="220" style="stroke:rgb(0, 0, 0);stroke-width:2" />
-                        <animateTransform 
-                            xlink:href="#lines2"
-                            attributeName="transform" 
-                            attributeType="XML"
-                            type="rotate"
-                            from="0 120 340"
-                            to="360 120 340" 
-                            dur="2s"
-                            begin="0s"
-                            repeatCount="indefinite"
-                            fill="freeze" 
-                        />
                     </g>
             </g>
 
@@ -139,6 +91,8 @@
         <svg id="svgcanvas2" xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:700px; height: 350px; margin: 0 auto;">
             <circle id="krouzek" cx="350" cy="200" r="100" stroke="gold" stroke-width="4" fill="blue" />
         </svg>
+
+        <input type="number" id="y0" name="pocatecni_podminka" value="0" step=1>
 
         Další materiály:
         <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Mozilla MDN SVG</a>
@@ -199,6 +153,19 @@
 
             }
 
+            function rotateCircle2(svg1, angle) {
+                var cx = 120; 
+                var cy = 340; 
+
+                svg1.setAttribute("transform", "rotate(" + angle + "," + cx + "," + cy + ")"); 
+            }
+
+            let numberInput = document.querySelector('#y0');  
+            numberInput.addEventListener('change', function (event) {
+                let number = Number(numberInput.value); 
+                rotateCircle2(first, number); 
+            }, false)
+
             // Aktualizace vterinove rucicky
             function updateTime() {
                 // sirka predka
@@ -222,7 +189,7 @@
 
                 // Změna barvy svg prvku
                 rotate(third, (actTime.getSeconds() / 60) * 360);
-                rotateCircle(first, angle);
+                //rotateCircle(first, angle);
 
                 // Posun ručičky
                 updateTime();
@@ -235,7 +202,7 @@
 
                 k.setAttributeNS(null, "stroke-width", Math.round(Math.random() * 100)); 
                 i++; 
-                angle += 6;
+                //angle += 6;
                 
             }
 
