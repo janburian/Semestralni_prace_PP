@@ -30,6 +30,8 @@ REX.HMI.init = function () {
 
     // VYSTUPY
     function startAnimation() {
+        document.getElementById('y0').setAttribute('readonly', true);
+
         let fi1Input = document.getElementById('Fi1');
         REX.HMI.get('Fi1').on('change',function(itm){
             let value = itm.getValue();
@@ -113,14 +115,6 @@ REX.HMI.init = function () {
         REX.HMI.get('reset_pp').write(true);
     }
 
-    function rotateBall_angle(svgElement1, svgElement2, poloha_deg) {
-        var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
-        var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
-
-        var oper = "rotate(" + poloha_deg + "," + cx + "," + cy + ")"; 
-
-        svgElement1.setAttribute("transform", oper); 
-    }
 
     let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
