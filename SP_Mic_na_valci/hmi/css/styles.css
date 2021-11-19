@@ -26,6 +26,20 @@ input:read-only{
     background-color: #dfdfdf;
 }
 
+h2 {
+  color: #2196F3; 
+}
+
+p {
+  color: #2196F3; 
+}
+
+input[type=text],[type=number] {
+  width: 100px;
+  padding: 6px 15px;
+  box-sizing: border-box;
+  text-align: center;
+}
 
 #leftbox {
     float: left; 
@@ -105,7 +119,19 @@ input:read-only{
     border-radius: 50%;
   }
 
+  .button {
+    font-size: 18px;
+    height: auto;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #2196F3;
+    border: none;
+  }
 
+  .button:hover {background-color: #0628be}
 
 
 
