@@ -126,8 +126,8 @@ REX.HMI.init = function () {
     numberInput.addEventListener('change', function (event) {
         let number = Number(numberInput.value);  
         REX.HMI.get('pp_poloha_mice').write((number / 180) * Math.PI); // mozna hodnota v radianech
-        number_rad = (number / 180) * Math.PI; 
-        rotateBall_angle(mic, spulka, number);
+        var number_rad = (number / 180) * Math.PI; 
+        initializeBallPosition(mic, 0, number_rad, 2); 
         //akt_poloha_mic = number_rad;  
     }, false)
 
@@ -153,6 +153,20 @@ REX.HMI.init = function () {
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
         svgElement.children[1].setAttribute("dur", dur_string + "ms"); 
+    }
+
+    function initializeBallPosition(svgElement, angle_from, angle_to, dur) {
+        var angle_from_degrees = ((angle_from * 180) / Math.PI).toString(); 
+        var angle_to_degrees = ((angle_to * 180) / Math.PI).toString(); 
+        var dur_string = dur.toString(); 
+
+        svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
+        svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
+        svgElement.children[1].setAttribute("dur", dur_string + "s"); 
+        svgElement.children[1].setAttribute("repeatCount", "indefinite");
+
+        svgElement.children[1].setAttribute("from", angle_to_degrees + " " + "225 290");
+        svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
     }
 
     function rotateLines(svgElement, angle_from, angle_to, dur) {
