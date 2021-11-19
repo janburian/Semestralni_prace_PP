@@ -27,6 +27,7 @@ REX.HMI.init = function () {
 
     var mic = document.querySelector("#mic");
     var spulka = document.querySelector("#spulka");
+    
 
     // VYSTUPY
     function startAnimation() {
