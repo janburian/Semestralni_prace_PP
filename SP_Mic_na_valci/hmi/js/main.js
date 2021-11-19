@@ -27,7 +27,7 @@ REX.HMI.init = function () {
 
     var mic = document.querySelector("#mic");
     var spulka = document.querySelector("#spulka");
-    
+
 
     // VYSTUPY
     function startAnimation() {
@@ -80,7 +80,6 @@ REX.HMI.init = function () {
                 var angle2 = value; 
 
                 rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
-                rotateBall_angle(mic, spulka, angle2); // ?
             }
             akt_poloha_mic = value; 
             timestamp_akt_poloha_mic = Date.now();
@@ -173,7 +172,6 @@ REX.HMI.init = function () {
         lines.children[2].setAttribute("from", angle_from_degrees + " " + "225 150"); 
         lines.children[2].setAttribute("to", angle_to_degrees + " " + "225 150"); 
         lines.children[2].setAttribute("dur", dur_string + "ms");
-        //lines.children[2].setAttribute("repeatCount", "indefinite"); 
     }
 
     function rotateSpoolByAngle(svgElement, angle_from, angle_to, dur) {
@@ -183,8 +181,7 @@ REX.HMI.init = function () {
 
         svgElement.children[3].setAttribute("from", angle_from_degrees + " " + "225 290"); 
         svgElement.children[3].setAttribute("to", angle_to_degrees + " " + "225 290"); 
-        svgElement.children[3].setAttribute("dur", dur_string + "ms");
-        //svgElement.children[3].setAttribute("repeatCount", "indefinite"); 
+        svgElement.children[3].setAttribute("dur", dur_string + "ms"); 
     }
 
     function rotateSpool(svgElement, poloha_rad) {
