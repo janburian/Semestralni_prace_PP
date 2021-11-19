@@ -29,6 +29,7 @@ REX.HMI.init = function () {
     var spulka = document.querySelector("#spulka");
 
     // VYSTUPY
+<<<<<<< HEAD
     function startAnimation() {
         let fi1Input = document.getElementById('Fi1');
         REX.HMI.get('Fi1').on('change',function(itm){
@@ -92,6 +93,68 @@ REX.HMI.init = function () {
             rychlost_mic = value; 
         });
     }
+=======
+    let fi1Input = document.getElementById('Fi1');
+    REX.HMI.get('Fi1').on('change',function(itm){
+        let value = itm.getValue();
+        // Konverze číselné hodnoty na string s třemi desetinnými místy
+        value = value.toFixed(3);
+        fi1Input.value = value;
+        if (akt_poloha_spulka != null) {
+            let deltaFi1 = value - akt_poloha_spulka;
+            var ellapsed_time = Date.now() - timestamp_akt_poloha_spulka;
+
+            var angle_spool_1 = value - deltaFi1; 
+            var angle_spool_2 = value; 
+
+            var pomer_spulka_mic = 80 / 60; 
+            var angle_lines_1 = value; // mic se bude tocit stejne rychle jako spulka, jen uhly budou opacne a s jinym znamenkem
+            var angle_lines_2 = value - (deltaFi1 * pomer_spulka_mic);
+
+            rotateSpoolByAngle(spulka, angle_spool_1, angle_spool_2, ellapsed_time); 
+            rotateLines(mic, angle_lines_1, angle_lines_2, ellapsed_time);
+        }
+        akt_poloha_spulka = value; 
+        timestamp_akt_poloha_spulka = Date.now();
+    });
+
+    let dfi1Input = document.getElementById('dFi1');
+    REX.HMI.get('dFi1').on('change',function(itm){
+        let value = itm.getValue();
+        // Konverze číselné hodnoty na string s třemi desetinnými místy
+        value = value.toFixed(3);
+        dfi1Input.value = value;
+        rychlost_spulka = value; 
+    });
+
+    let fi2Input = document.getElementById('Fi2');
+    REX.HMI.get('Fi2').on('change',function(itm){
+        let value = itm.getValue();
+        // Konverze číselné hodnoty na string s třemi desetinnými místy
+        value = value.toFixed(3);
+        fi2Input.value = value;
+        if (akt_poloha_mic != null) {
+            let deltaFi2 = value - akt_poloha_mic;
+            var ellapsed_time = Date.now() - timestamp_akt_poloha_mic; 
+            
+            var angle1 = value - deltaFi2;
+            var angle2 = value; 
+
+            rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
+        }
+        akt_poloha_mic = value; 
+        timestamp_akt_poloha_mic = Date.now();
+    });
+
+    let dfi2Input = document.getElementById('dFi2');
+    REX.HMI.get('dFi2').on('change',function(itm){
+        let value = itm.getValue();
+        // Konverze číselné hodnoty na string s třemi desetinnými místy
+        value = value.toFixed(3);
+        dfi2Input.value = value;
+        rychlost_mic = value; 
+    });
+>>>>>>> parent of 8c6c801 (Function readData())
 
 
     // VSTUPY
@@ -124,11 +187,17 @@ REX.HMI.init = function () {
 
     let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
+<<<<<<< HEAD
         let number = Number(numberInput.value);  
         REX.HMI.get('pp_poloha_mice').write((number / 180) * Math.PI); // mozna hodnota v radianech
         number_rad = (number / 180) * Math.PI; 
         rotateBall_angle(mic, spulka, number);
         //akt_poloha_mic = number_rad;  
+=======
+        let number = Number(numberInput.value); 
+        akt_poloha_mic = number; 
+        REX.HMI.get('pp_poloha_mice').write(number); 
+>>>>>>> parent of 8c6c801 (Function readData())
     }, false)
 
     // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
@@ -152,7 +221,12 @@ REX.HMI.init = function () {
 
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
+<<<<<<< HEAD
         svgElement.children[1].setAttribute("dur", dur_string + "ms"); 
+=======
+        svgElement.children[1].setAttribute("dur", dur_string + "ms");
+        //svgElement.children[1].setAttribute("repeatCount", "indefinite"); 
+>>>>>>> parent of 8c6c801 (Function readData())
     }
 
     function rotateLines(svgElement, angle_from, angle_to, dur) {
@@ -198,8 +272,18 @@ REX.HMI.init = function () {
 
 
     // public - Verejne pristupne funkce
+<<<<<<< HEAD
     start = function () { 
         startAnimation(); 
+=======
+       startTimer = function () { 
+        if (timer != undefined) {
+            // Vypnuti casovace
+            clearInterval(timer);
+        }
+        // Casovac, ktery vola funkci timer1_Tick kaĹľdých 500 ms
+        timer = setInterval(timer_Tick, 500);
+>>>>>>> parent of 8c6c801 (Function readData())
     };
 
     stopTimer = function () {
