@@ -24,7 +24,7 @@ REX.HMI.init = function () {
     var timestamp_akt_poloha_spulka;
     var timestamp_akt_poloha_mic;
 
-    var mic = document.querySelector("#mic");
+    var mic = document.querySelector("#mic_komplet");
     var spulka = document.querySelector("#spulka");
 
     // VYSTUPY
@@ -76,6 +76,7 @@ REX.HMI.init = function () {
                 var angle2 = value; 
 
                 rotateBallByAngle(mic, angle1, angle2, ellapsed_time); 
+                rotateBall_angle(mic, spulka, angle2); // ?
             }
             akt_poloha_mic = value; 
             timestamp_akt_poloha_mic = Date.now();
@@ -115,8 +116,6 @@ REX.HMI.init = function () {
         var cx = Number(svgElement2.childNodes[1].getAttribute("cx")); 
         var cy = Number(svgElement2.childNodes[1].getAttribute("cy")); 
 
-        //var ball = svgElement1.children[0]; 
-
         var oper = "rotate(" + poloha_deg + "," + cx + "," + cy + ")"; 
 
         svgElement1.setAttribute("transform", oper); 
@@ -128,7 +127,7 @@ REX.HMI.init = function () {
         REX.HMI.get('pp_poloha_mice').write((number / 180) * Math.PI); // mozna hodnota v radianech
         number_rad = (number / 180) * Math.PI; 
         rotateBall_angle(mic, spulka, number);
-        akt_poloha_mic = number_rad;  
+        //akt_poloha_mic = number_rad;  
     }, false)
 
     // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
@@ -144,7 +143,7 @@ REX.HMI.init = function () {
 
         svgElement.children[1].setAttribute("from", angle_from_degrees + " " +  "225 290"); 
         svgElement.children[1].setAttribute("to", angle_to_degrees + " " + "225 290"); 
-        svgElement.children[1].setAttribute("dur", dur_string + "s"); //ms
+        svgElement.children[1].setAttribute("dur", dur_string + "ms"); 
     }
 
     function rotateLines(svgElement, angle_from, angle_to, dur) {
