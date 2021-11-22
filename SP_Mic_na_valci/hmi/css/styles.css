@@ -5,24 +5,25 @@ html, body {
     margin: 0;
     font-family: 'Roboto', Arial, sans-serif;
 }
-body{
+body {
     display: flex;
     flex-direction: column;
     color: white;
     text-align: center;
 }
 
-header{
+header {
     height: 5em;
     background-color: #0074C5;
 }
-main{
+
+main {
     flex:4;
     background-color: #eef1f0;
     color: #000000;
 }
 
-input:read-only{
+input:read-only {
     background-color: #dfdfdf;
 }
 
@@ -48,7 +49,7 @@ input[type=text],[type=number] {
     height: 80%;
 }
 
-#rightbox{
+#rightbox {
     float: right;
     background:white;
     width: 350px;
