@@ -33,20 +33,23 @@ REX.HMI.init = function () {
         REX.HMI.get('stouchnuti').write(true); 
     }
 
-    let checkboxInput2 = document.querySelector('#nahodna_porucha'); 
-    checkboxInput2.addEventListener('change', function (event) {
-        if (checkboxInput2.checked) {
+    let checkboxInput = document.querySelector('#nahodna_porucha'); 
+    checkboxInput.addEventListener('change', function (event) {
+        if (checkboxInput.checked) {
             REX.HMI.get('nahodna_porucha').write(true);
         } else {
             REX.HMI.get('nahodna_porucha').write(false);
         }
     }, false)
 
+    REX.HMI.get('nahodna_porucha').on('change', function (itm) { 
+        let value = itm.getValue(); 
+        checkboxInput.checked = (value === 1); 
+    }); 
 
     reset = function () {
         REX.HMI.get('reset_pp').write(true);
     }
-
 
     let numberInput = document.querySelector('#y0');  
     numberInput.addEventListener('change', function (event) {
@@ -54,14 +57,8 @@ REX.HMI.init = function () {
         REX.HMI.get('pp_poloha_mice').write((number / 180) * Math.PI);
         var number_rad = (number / 180) * Math.PI; 
         initializeBallPosition(mic, 0, number_rad, 2); 
-        //akt_poloha_mic = number_rad;  
+        akt_poloha_mic = number_rad;  
     }, false)
-
-    // REX.HMI.get('nahodna_porucha').on('change', function (itm) { // TODO: doladit
-    //     let value = itm.getValue(); 
-    //     checkboxInput.checked = (value === 1); 
-    // }); 
-
 
  
     // VYSTUPY
@@ -98,8 +95,7 @@ REX.HMI.init = function () {
             let value = itm.getValue();
             // Konverze číselné hodnoty na string s třemi desetinnými místy
             value = value.toFixed(3);
-            dfi1Input.value = value;
-            rychlost_spulka = value; 
+            dfi1Input.value = value; 
         });
 
 
@@ -129,7 +125,6 @@ REX.HMI.init = function () {
             // Konverze číselné hodnoty na string s třemi desetinnými místy
             value = value.toFixed(3);
             dfi2Input.value = value;
-            rychlost_mic = value; 
         });
     }
 
