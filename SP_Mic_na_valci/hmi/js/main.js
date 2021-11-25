@@ -54,8 +54,8 @@ REX.HMI.init = function () {
         var number_rad = (number / 180) * Math.PI; 
         setupBallPosition(mic, 0, number_rad, 2);  
     }, false)
-
  
+
     // VYSTUPY
     let fi1Input = document.getElementById('Fi1');
     REX.HMI.get('Fi1').on('change',function(itm) {
@@ -169,4 +169,5 @@ REX.HMI.init = function () {
 
         return { angle_from_degrees, angle_to_degrees };
     }
+
 };
